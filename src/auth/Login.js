@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 import styled from 'styled-components';
 import FormErrors from './FormErrors';
+import APIURL from '../helpers/environment'
 
 const Title = styled.h4`
 font-family: 'Raleway', sans-serif;
@@ -28,7 +29,7 @@ class Login extends Component {
 
     handleSubmit = (event) => {
         //POST - fetch
-        fetch("http://localhost:3000/jediApp/Login", {
+        fetch(`${APIURL}/jediApp/Login`, {
             method: 'POST',
             body: JSON.stringify({ user: this.state }),
             headers: new Headers({

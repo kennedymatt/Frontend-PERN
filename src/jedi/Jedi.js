@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import JediCreate from './JediCreate';
 import JediTable from './JediTable';
 import JediEdit from './JediEdit';
+import APIURL from '../helpers/environment';
 
 
 const Padding = styled.div`
@@ -53,7 +54,7 @@ class Jedi extends Component {
     }
 
     fetchJedi = () => {
-        fetch(`http://localhost:3000/jediApp/jedi`)
+        fetch(`${APIURL}/jediApp/jedi,`)
             .then(response => {
                 if (response.status !== 200) {
                     console.log('Error: ' + response.status);
@@ -71,7 +72,7 @@ class Jedi extends Component {
     }
 
     fetchUserJedi = () => {
-        fetch(`http://localhost:3000/jediApp/userJedi`, {
+        fetch(`${APIURL}/jediApp/userJedi`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -87,7 +88,7 @@ class Jedi extends Component {
     }
 
     jediDelete = (event) => {
-        fetch(`http://localhost:3000/jediApp/userJedi/${event.target.id}`, {
+        fetch(`${APIURL}/jediApp/userJedi/${event.target.id}`, {
             method: 'DELETE',
             body: JSON.stringify({ userJedi: { id: event.target.id } }),
             headers: new Headers({
@@ -100,7 +101,7 @@ class Jedi extends Component {
 
     jediUpdate = (event, userJedi) => {
         console.log(event.target.id)
-        fetch(`http://localhost:3000/jediApp/userJedi/${userJedi.id}`, {
+        fetch(`${APIURL}/jediApp/userJedi/${userJedi.id}`, {
             method: 'PUT',
             body: JSON.stringify({ userJedi: userJedi }),
             headers: new Headers({

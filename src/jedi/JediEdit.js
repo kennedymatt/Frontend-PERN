@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Form, FormGroup, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import APIURL from '../helpers/environment';
 
 class JediEdit extends React.Component {
 

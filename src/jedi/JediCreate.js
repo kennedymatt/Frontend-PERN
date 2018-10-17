@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 import styled from 'styled-components';
+import APIURL from '../helpers/environment';
 
 const Title = styled.h3`
 color: white;
@@ -33,7 +34,7 @@ class JediCreate extends Component {
 
     handleSubmit = (event) => {
         console.log(this.state)
-        fetch('http://localhost:3000/jediApp/userJedi', {
+        fetch('${APIURL}/jediApp/userJedi', {
             method: 'POST',
             body: JSON.stringify({ userJedi: this.state }),
             headers: new Headers({
