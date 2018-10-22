@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import JediResults from './JediResults';
-import { Form, FormGroup, Input, Col, Row } from 'reactstrap';
+import {Container, Form, FormGroup, Input, Col, Row } from 'reactstrap';
 import styled from 'styled-components';
 import JediCreate from './JediCreate';
 import JediTable from './JediTable';
@@ -23,8 +23,6 @@ class userJedi extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            results: [],
-            filteredResults: [],
             userJedi: [],
             updatePressed: false,
             jediToUpdate: {}
@@ -33,25 +31,25 @@ class userJedi extends Component {
 
     componentDidMount = () => {
         this.fetchuserJedi();
-        // this.fetchJedi();
+        
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-    }
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    // }
 
-    handleKeyUp = () => {
-        let val = document.getElementById('searchInput').value;
-        let results = this.state.results
+    // handleKeyUp = () => {
+    //     let val = document.getElementById('searchInput').value;
+    //     let results = this.state.results
 
-        let filtered = results.filter(result => {
-            if (result.userJedi.toLowerCase().includes(val.toLowerCase())) {
-                return result
-            } else if (result.Name.toLowerCase().includes(val.toLowerCase()))
-                return result
-        })
-        this.setState({ filteredResults: filtered, results: results })
-    }
+    //     let filtered = results.filter(result => {
+    //         if (result.userJedi.toLowerCase().includes(val.toLowerCase())) {
+    //             return result
+    //         } else if (result.Name.toLowerCase().includes(val.toLowerCase()))
+    //             return result
+    //     })
+    //     this.setState({ filteredResults: filtered, results: results })
+    // }
 
     // fetchJedi = () => {
     //     fetch(`${APIURL}/jediApp/Jedi`,)
@@ -85,6 +83,7 @@ class userJedi extends Component {
             .then((userJediData) => {
                 return this.setState({ userJedi: userJediData })
             })
+            
     }
 
     // jediDelete = (event) => {
@@ -123,38 +122,27 @@ class userJedi extends Component {
     // }
 
     render() {
+        const userJedi = this.state.userJedi.length >= 1 ?
+        <JediTable userJedi={this.state.userJedi} delete={this.jediDelete} update={this.setUpdatedJedi} /> : <h2>Jedi Log</h2>
         return (
-            <div>
-                <Padding>
+                <Container>
                     <Row>
                         <Col md="5">
-                            <Form onSubmit={this.handleSubmit} id="form" autoComplete="off">
-                                <FormGroup>
-                                    <Title> Search for a Jedi </Title>
-                                    <hr />
-                                    <Input onKeyUp={this.handleKeyUp} id="searchInput" className="searchBar" type="text" placeholder="Search by name" required />
-                                    <JediResults results={this.state.filteredResults} />
-                                </FormGroup>
-                            </Form>
+                            <JediCreate token={this.props.token} updateuserJediArray={this.fetchuserJedi} />                            
                         </Col>
                         <Col md="2">
-                        </Col>
-                        <Col md="5">
-                            <JediCreate token={this.props.token} updateuserJediArray={this.fetchuserJedi} />
-                        </Col>
+                            {userJedi}
+                        </Col>       
                     </Row>
-                </Padding>
-                <div>
-                    <JediTable userJedi={this.state.results} delete={this.jediDelete} update={this.setUpdatedJedi} />
+                    {}
                     <Col md="12">
                         {
                             this.state.updatePressed ? <JediEdit t={this.state.updatePressed} update={this.jediUpdate} userjedi={this.state.jediToUpdate} />
                                 : <div></div>
                         }
                     </Col>
-                </div>
-            </div>
-        );
+                </Container>
+        )
     }
 }
 

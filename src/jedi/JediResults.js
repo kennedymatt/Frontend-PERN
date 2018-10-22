@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const Results = styled.ul`
+const JediResults = styled.ul`
 overflow: scroll;
 height: 30em;
 width: 18.56em;
@@ -20,19 +20,24 @@ font-family: 'Raleway', sans-serif;
     }
 `;
 
-const JediResults = ({ results }) => {
-    const resultsFormatted = results.map((result) =>
+const userJedi = ({ results }) => {
+    const JediResults = userJedi.map((result) =>
         <li key={result}>
             <div>
-                <p>{result.userJedi}</p>
-                <p>{result.Name}{', '}{result.Race}{' - '}{' # '}{result.Lightsaber}</p>
+                <p>{result.id}</p>
+                <p>{result.name}</p>
+                <p>{result.race}</p>
+                <p>{result.lightsaber}</p>
+                <p>{result.vehicle}</p>
+                <p>{result.planet}</p>
+                <p>{result.rating}</p>
             </div>
         </li>
     );
     return (
-        <Results id="results">
-            {resultsFormatted}
-        </Results>
+        <JediResults id="results">
+            {JediResults}
+        </JediResults>
     );
 }
 export default JediResults;

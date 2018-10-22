@@ -19,8 +19,9 @@ class JediEdit extends React.Component {
 
     componentWillMount() {
         this.setState({
-            name: this.props.userJedi.name,
-            race: this.props.userJedi.race,
+            id: this.props.userJedi.id,
+            name:this.props.userJedi.name,
+            race:this.props.userJedi.race,
             lightsaber: this.props.userJedi.lightsaber,
             vehicle: this.props.userJedi.vehicle,
             planet: this.props.userJedi.planet,
@@ -49,10 +50,10 @@ class JediEdit extends React.Component {
                     <ModalBody>
                         <Form onSubmit={this.handleSubmit} >
                             <FormGroup>
-                                <Input id="jedi" type="text" name="jedi" value={this.state.Jedi} placeholder="Enter a jedi" onChange={this.handleChange} />
+                                <Input id="jedi" type="text" name="jedi" value={this.state.jedi} placeholder="Enter a jedi" onChange={this.handleChange} />
                             </FormGroup>
                             <FormGroup>
-                                <Input type="select" name="rating" id="rating" value={this.state.Rating} onChange={this.handleChange} placeholder="Type">
+                                <Input type="select" name="rating" id="rating" value={this.state.rating} onChange={this.handleChange} placeholder="Type">
                                     <option>Rating</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -64,13 +65,10 @@ class JediEdit extends React.Component {
                             <Button type="submit" color="secondary"> Submit </Button>
                         </Form>
                     </ModalBody>
-
                 </Modal>
-
             </div>
         )
     }
 }
-
 
 export default JediEdit;

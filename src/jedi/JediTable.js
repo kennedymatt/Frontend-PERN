@@ -25,6 +25,7 @@ const JediTable = (props) => {
                                 <th>Vehicle</th>
                                 <th>Planet</th>
                                 <th>Rating</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,7 +33,7 @@ const JediTable = (props) => {
                                  props.userJedi.map((userJedi, id) => {
                                     return (
                                          <tr key={id}>
-                                             <th scope="row">{userJedi.id}</th>
+                                             <th scope="row">{userJedi.id}</th>  
                                              <td>{userJedi.name}</td>
                                              <td>{userJedi.race}</td>
                                              <td>{userJedi.lightsaber}</td>
