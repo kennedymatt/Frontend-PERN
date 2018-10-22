@@ -8,20 +8,21 @@ class JediEdit extends React.Component {
         super(props)
 
         this.state = {
+            id: '',
             name: '',
             race: '',
-            Lightsaber: '',
+            lightsaber: '',
             vehicle: '',
             planet: '',
-            rating: ''
+            rating: '',
         };
     }
 
     componentWillMount() {
         this.setState({
             id: this.props.userJedi.id,
-            name:this.props.userJedi.name,
-            race:this.props.userJedi.race,
+            name: this.props.userJedi.name,
+            race: this.props.userJedi.race,
             lightsaber: this.props.userJedi.lightsaber,
             vehicle: this.props.userJedi.vehicle,
             planet: this.props.userJedi.planet,
@@ -49,9 +50,22 @@ class JediEdit extends React.Component {
                     <ModalHeader >Edit a Jedi</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleSubmit} >
-                            <FormGroup>
-                                <Input id="jedi" type="text" name="jedi" value={this.state.jedi} placeholder="Enter a jedi" onChange={this.handleChange} />
-                            </FormGroup>
+                            {/* <FormGroup>
+                                <Input id="name" type="select" name="jedi" value={this.state.name} placeholder="Enter a jedi" onChange={this.handleChange}>
+                                <option>Choose your Name</option>
+                            <option value="Luke Skywalker">Luke Skywalker</option>
+                            <option value="Aalya Secura">Aalya Secura</option>
+                            <option value="Kit Fisto">Kit Fisto</option>
+                            <option value="Plo Koon">Plo Koon</option>
+                            <option value="Mace Windu">Mace Windu</option>
+                            <option value="Anakin Skywalker">Anakin Skywalker</option>
+                            <option value="Obi-Wan Kenobi">Obi-Wan Kenobi</option>
+                            <option value="Yoda">Yoda</option>
+                            <option value="Quinlan Vos">Quinlan Vos</option>
+                            <option value="Ki-Adi-Mundi">Ki-Adi-Mundi</option>
+                            <option value="Oppo Rancisis">Oppo Rancisis</option>
+                            </Input>  
+                            </FormGroup> */}
                             <FormGroup>
                                 <Input type="select" name="rating" id="rating" value={this.state.rating} onChange={this.handleChange} placeholder="Type">
                                     <option>Rating</option>
@@ -62,7 +76,7 @@ class JediEdit extends React.Component {
                                     <option value="5">5</option>
                                 </Input>
                             </FormGroup>
-                            <Button type="submit" color="secondary"> Submit </Button>
+                            <Button type="submit" color="secondary"> Update Rating </Button>
                         </Form>
                     </ModalBody>
                 </Modal>

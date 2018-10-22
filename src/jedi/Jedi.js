@@ -86,40 +86,40 @@ class userJedi extends Component {
             
     }
 
-    // jediDelete = (event) => {
-    //     fetch(`${APIURL}/jediApp/userJedi/${event.target.id}`, {
-    //         method: 'DELETE',
-    //         body: JSON.stringify({ userJedi: { id: event.target.id } }),
-    //         headers: new Headers({
-    //             'Content-Type': 'application/json',
-    //             'Authorization': this.props.token
-    //         })
-    //     })
-    //         .then((res) => this.fetchUserJedi())
-    // }
+    jediDelete = (event) => {
+        fetch(`${APIURL}/jediApp/userJedi/${event.target.id}`, {
+            method: 'DELETE',
+            body: JSON.stringify({ userJedi: { id: event.target.id } }),
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': this.props.token
+            })
+        })
+            .then((res) => this.fetchuserJedi())
+    }
 
-    // jediUpdate = (event, userJedi) => {
-    //     console.log(event.target.id)
-    //     fetch(`${APIURL}/jediApp/userJedi/${userJedi.id}`, {
-    //         method: 'PUT',
-    //         body: JSON.stringify({ userJedi: userJedi }),
-    //         headers: new Headers({
-    //             'Content-Type': 'application/json',
-    //             'Authorization': this.props.token
-    //         })
-    //     })
-    //         .then((res) => {
-    //             this.setState({ updatePressed: false })
-    //             this.fetchUserJedi();
-    //         })
-    // }
+    jediUpdate = (event, userJedi) => {
+        console.log(event.target.id)
+        fetch(`${APIURL}/jediApp/userJedi/${userJedi.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({ userJedi: userJedi }),
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': this.props.token
+            })
+        })
+            .then((res) => {
+                this.setState({ updatePressed: false })
+                this.fetchuserJedi();
+            })
+    }
 
-    // setUpdatedJedi = (event, userJedi) => {
-    //     this.setState({
-    //         jediToUpdate: userJedi,
-    //         updatePressed: true
-    //     })
-    // }
+    setUpdatedJedi = (event, userJedi) => {
+        this.setState({
+            JediToUpdate: userJedi,
+            updatePressed: true
+        })
+    }
 
     render() {
         const userJedi = this.state.userJedi.length >= 1 ?
@@ -137,7 +137,7 @@ class userJedi extends Component {
                     {}
                     <Col md="12">
                         {
-                            this.state.updatePressed ? <JediEdit t={this.state.updatePressed} update={this.jediUpdate} userjedi={this.state.jediToUpdate} />
+                            this.state.updatePressed ? <JediEdit t={this.state.updatePressed} update={this.jediUpdate} userJedi={this.state.JediToUpdate} />
                                 : <div></div>
                         }
                     </Col>
