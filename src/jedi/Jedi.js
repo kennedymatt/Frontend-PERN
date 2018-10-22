@@ -19,7 +19,7 @@ font-family: 'Raleway', sans-serif;
 text-shadow: 1.5px 1.5px #000000
 `;
 
-class Jedi extends Component {
+class userJedi extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -32,8 +32,8 @@ class Jedi extends Component {
     }
 
     componentDidMount = () => {
-        this.fetchJedi();
-        this.fetchUserJedi();
+        this.fetchuserJedi();
+        // this.fetchJedi();
     }
 
     handleSubmit = (e) => {
@@ -45,7 +45,7 @@ class Jedi extends Component {
         let results = this.state.results
 
         let filtered = results.filter(result => {
-            if (result.jedi.toLowerCase().includes(val.toLowerCase())) {
+            if (result.userJedi.toLowerCase().includes(val.toLowerCase())) {
                 return result
             } else if (result.Name.toLowerCase().includes(val.toLowerCase()))
                 return result
@@ -53,25 +53,27 @@ class Jedi extends Component {
         this.setState({ filteredResults: filtered, results: results })
     }
 
-    fetchJedi = () => {
-        fetch(`${APIURL}/jediApp/jedi,`)
-            .then(response => {
-                if (response.status !== 200) {
-                    console.log('Error: ' + response.status);
-                    return;
-                }
-                response.json().then(data => {
-                    console.log(data)
-                    const results = data;
-                    this.setState({ results: results })
-                })
-            })
-            .catch(err => {
-                console.log('Fetch Error:', err)
-            })
-    }
+    // fetchJedi = () => {
+    //     fetch(`${APIURL}/jediApp/Jedi`,)
+    //         .then(response => {
+    //             if (response.status !== 200) {
+    //                 console.log('Error: ' + response.status);
+    //                 return;
+    //             }
 
-    fetchUserJedi = () => {
+            
+    //             response.json().then(data => {
+    //                 console.log(data)
+    //                 const results = data;
+    //                 this.setState({ results: results })
+    //             })
+    //         })
+    //         .catch(err => {
+    //             console.log('Fetch Error:', err)
+    //         })
+    // }
+
+    fetchuserJedi = () => {
         fetch(`${APIURL}/jediApp/userJedi`, {
             method: 'GET',
             headers: new Headers({
@@ -79,48 +81,46 @@ class Jedi extends Component {
                 'Authorization': this.props.token
             })
         })
-            .then(res => 
-            console.log(res))
-            
+            .then((res) => res.json())
             .then((userJediData) => {
                 return this.setState({ userJedi: userJediData })
             })
     }
 
-    jediDelete = (event) => {
-        fetch(`${APIURL}/jediApp/userJedi/${event.target.id}`, {
-            method: 'DELETE',
-            body: JSON.stringify({ userJedi: { id: event.target.id } }),
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Authorization': this.props.token
-            })
-        })
-            .then((res) => this.fetchUserJedi())
-    }
+    // jediDelete = (event) => {
+    //     fetch(`${APIURL}/jediApp/userJedi/${event.target.id}`, {
+    //         method: 'DELETE',
+    //         body: JSON.stringify({ userJedi: { id: event.target.id } }),
+    //         headers: new Headers({
+    //             'Content-Type': 'application/json',
+    //             'Authorization': this.props.token
+    //         })
+    //     })
+    //         .then((res) => this.fetchUserJedi())
+    // }
 
-    jediUpdate = (event, userJedi) => {
-        console.log(event.target.id)
-        fetch(`${APIURL}/jediApp/userJedi/${userJedi.id}`, {
-            method: 'PUT',
-            body: JSON.stringify({ userJedi: userJedi }),
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Authorization': this.props.token
-            })
-        })
-            .then((res) => {
-                this.setState({ updatePressed: false })
-                this.fetchUserJedi();
-            })
-    }
+    // jediUpdate = (event, userJedi) => {
+    //     console.log(event.target.id)
+    //     fetch(`${APIURL}/jediApp/userJedi/${userJedi.id}`, {
+    //         method: 'PUT',
+    //         body: JSON.stringify({ userJedi: userJedi }),
+    //         headers: new Headers({
+    //             'Content-Type': 'application/json',
+    //             'Authorization': this.props.token
+    //         })
+    //     })
+    //         .then((res) => {
+    //             this.setState({ updatePressed: false })
+    //             this.fetchUserJedi();
+    //         })
+    // }
 
-    setUpdatedJedi = (event, userJedi) => {
-        this.setState({
-            jediToUpdate: userJedi,
-            updatePressed: true
-        })
-    }
+    // setUpdatedJedi = (event, userJedi) => {
+    //     this.setState({
+    //         jediToUpdate: userJedi,
+    //         updatePressed: true
+    //     })
+    // }
 
     render() {
         return (
@@ -140,7 +140,7 @@ class Jedi extends Component {
                         <Col md="2">
                         </Col>
                         <Col md="5">
-                            <JediCreate token={this.props.token} updateJediArray={this.fetchuserJedi} />
+                            <JediCreate token={this.props.token} updateuserJediArray={this.fetchuserJedi} />
                         </Col>
                     </Row>
                 </Padding>
@@ -158,4 +158,4 @@ class Jedi extends Component {
     }
 }
 
-export default Jedi;
+export default userJedi;

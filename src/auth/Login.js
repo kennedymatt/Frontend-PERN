@@ -29,7 +29,7 @@ class Login extends Component {
 
     handleSubmit = (event) => {
         //POST - fetch
-        fetch(`${APIURL}/jediApp/Login`, {
+        fetch(`${APIURL}/jediApp/login`, {
             method: 'POST',
             body: JSON.stringify({ user: this.state }),
             headers: new Headers({

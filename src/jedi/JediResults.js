@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import APIURL from '../helpers/environment';
+
 
 const Results = styled.ul`
 overflow: scroll;
@@ -25,7 +25,7 @@ const JediResults = ({ results }) => {
         <li key={result}>
             <div>
                 <p>{result.userJedi}</p>
-                <p>{result.Name}{', '}{result.Race}{' - '}{result.Lightsaber}{' # '}{result.id}</p>
+                <p>{result.Name}{', '}{result.Race}{' - '}{' # '}{result.Lightsaber}</p>
             </div>
         </li>
     );

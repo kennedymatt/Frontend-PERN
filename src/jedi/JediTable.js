@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table, Button, Col, Row } from 'reactstrap';
 import styled from 'styled-components';
-import APIURL from '../helpers/environment';
 const Title = styled.h3`
 text-align: center;
 font-family: 'Raleway', sans-serif;
@@ -19,11 +18,13 @@ const JediTable = (props) => {
                     <Table striped>
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>Race</th>
                                 <th>Lightsaber</th>
                                 <th>Vehicle</th>
                                 <th>Planet</th>
+                                <th>Rating</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,12 +32,13 @@ const JediTable = (props) => {
                                  props.userJedi.map((userJedi, id) => {
                                     return (
                                          <tr key={id}>
-                                             <th scope="row">{userJedi.id}</th> 
-                                             <td>{userJedi.Name}</td>
-                                             <td>{userJedi.Race}</td>
-                                             <td>{userJedi.Lightsaber}</td>
-                                             <td>{userJedi.Vehicle}</td>                                   
-                                             <td>{userJedi.Planet}</td>                                             
+                                             <th scope="row">{userJedi.id}</th>
+                                             <td>{userJedi.name}</td>
+                                             <td>{userJedi.race}</td>
+                                             <td>{userJedi.lightsaber}</td>
+                                             <td>{userJedi.vehicle}</td>                                   
+                                             <td>{userJedi.planet}</td>
+                                             <td>{userJedi.rating}</td>                                             
                                              <td>
                                                  <Button id={userJedi.id} onClick={props.delete} outline color="secondary">Delete</Button>
                                                  <Button id={userJedi.id} onClick={e => props.update(e, userJedi)} outline color="secondary">Update</Button>

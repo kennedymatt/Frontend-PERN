@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form, FormGroup, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import APIURL from '../helpers/environment';
+
 
 class JediEdit extends React.Component {
 
@@ -12,19 +12,19 @@ class JediEdit extends React.Component {
             race: '',
             Lightsaber: '',
             vehicle: '',
-            companion: '',
-            planet: ''
+            planet: '',
+            rating: ''
         };
     }
 
     componentWillMount() {
         this.setState({
-            name: '',
-            race: '',
-            Lightsaber: '',
-            vehicle: '',
-            companion: '',
-            planet: ''
+            name: this.props.userJedi.name,
+            race: this.props.userJedi.race,
+            lightsaber: this.props.userJedi.lightsaber,
+            vehicle: this.props.userJedi.vehicle,
+            planet: this.props.userJedi.planet,
+            rating: this.props.userJedi.rating
         })
     }
 
